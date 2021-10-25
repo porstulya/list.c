@@ -7,7 +7,7 @@ typedef struct list {
 }list;
 
 /*--------------------------Функция создания списка---------------------------------------*/
-list *createList(int value){
+list *create(int value){
     list *n = malloc(sizeof(list));
     n->next = NULL;
     n->value = value;
@@ -76,12 +76,15 @@ void insertAfter(list * head, list* p, list* n){
     n -> next = p -> next;
     p -> next = n;
 }
+
+/*-------------------Вставка n до p-------------------------------------------------------*/
 void insertBefore(list *head, list *p, list *n){
     insertAfter(head, p, n);
     int tmp = p->value;
     p->value = n ->value;
     n->value = tmp;
 }
+
 
 /*----------------Функция поиска по списку------------------------------------------------*/
 list *search(list *head, int value){
@@ -96,8 +99,20 @@ list *search(list *head, int value){
     return 0;
 }
 
+/*-----------------Функция удаления элемента------------------------------------------------*/
+list *remvoe(list *head, list *n){
+    list *r = n->next;
+    int data = r->value;
+    r->value = n->value;
+    n->value = data;
+    n->value = r->value;
+    r->value = 0;
+    return r;
+}
+
 
 int main(){
+
 
 }
 
